@@ -1,4 +1,5 @@
 var socket;
+
 var serverAddr = config.SERVER_ADDRESS;
 
 function setup() {
@@ -29,7 +30,5 @@ function drawMouseReceived(data) {
 }
 
 function draw() {
-  // noStroke();
-  // fill(255);
-  // ellipse(mouseX, mouseY, 16, 16);
+
 }
