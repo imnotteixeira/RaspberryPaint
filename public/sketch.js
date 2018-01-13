@@ -7,7 +7,23 @@ function setup() {
   background(40);
   socket = io.connect('http://' + serverAddr);
   socket.on('mousePos', drawMouseReceived);
+  socket.on('newConnection', showNewConnection);
+  socket.on('chatMessage', showMsg);
 }
+
+function showNewConnection(data) {
+  let para = document.createElement("p");
+  //var node = document.createTextNode("<b>"+data.address + "</b>: " + data.message);
+  //para.appendChild(node);
+
+  document.getElementById('chat').appendChild(para);
+
+  para.innerHTML = "A new user has joined with ip: <b>"+data.clientIP + "</b>! ";
+
+  console.log(data.clientIP);
+}
+
+
 
 function mouseDragged() {
   var data = {
@@ -31,4 +47,35 @@ function drawMouseReceived(data) {
 
 function draw() {
 
+}
+
+
+/*****************************************/
+//CHAT
+
+
+function showMsg(data) {
+  let para = document.createElement("p");
+  //var node = document.createTextNode("<b>"+data.address + "</b>: " + data.message);
+  //para.appendChild(node);
+
+  document.getElementById('chat').appendChild(para);
+
+  para.innerHTML = "<b>"+data.nickname + "</b>: " + data.message;
+
+  console.log(data.clientIP);
+}
+
+function sendMsg() {
+  let inputBox = document.getElementById('msgInput');
+  let nick = document.getElementById('nickInput').value;
+  let msgText = inputBox.value;
+  inputBox.value = "";
+
+  var messageInfo = {
+    'message' : msgText,
+    'nickname' : nick
+  }
+
+  socket.emit('chatMessage', messageInfo);
 }
