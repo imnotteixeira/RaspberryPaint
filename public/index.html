@@ -4,19 +4,22 @@
     <title>RaspberryPaint</title>
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
     <style> body {padding: 0; margin: 0;} </style>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" charset="utf-8"></script>
     <script src='../config.js'></script>
     <script src="../p5.min.js"></script>
     <script src="../addons/p5.dom.min.js"></script>
     <script src="../addons/p5.sound.min.js"></script>
     <script src="sketch.js"></script>
+
   </head>
   <body>
-
-    <div id="chat" style="background-color: #999">
+    <div id="canvas"></div>
+    <div class="inputBar">
       <input type="text" name="" id="nickInput" value="">
       <input type="text" name="" id="msgInput" value="">
       <button type="button" onclick="sendMsg()" name="button">SEND</button>
     </div>
+    <div id="chat"></div>
   </body>
 </html>

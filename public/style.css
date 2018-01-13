@@ -1,0 +1,12 @@
+#chat {
+  background-color: #999;
+  width: 500px;
+  height: 800px;
+  overflow-y: scroll;
+}
+
+.inputBar {
+  background-color: #999;
+  padding: 10px;
+  width: 480px;
+}

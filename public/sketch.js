@@ -3,7 +3,9 @@ var socket;
 var serverAddr = config.SERVER_ADDRESS;
 
 function setup() {
-  createCanvas(600,600);
+  pixelDensity(2);
+  let canvas = createCanvas(800,800);
+  canvas.parent('canvas');
   background(40);
   socket = io.connect('http://' + serverAddr);
   socket.on('mousePos', drawMouseReceived);
@@ -42,7 +44,7 @@ function mouseDragged() {
 function drawMouseReceived(data) {
   noStroke();
   fill(255,0,0);
-  ellipse(data.x, data.y, 16, 16);
+  ellipse(data.x, data.y, 1, 1);
 }
 
 function draw() {
@@ -59,11 +61,14 @@ function showMsg(data) {
   //var node = document.createTextNode("<b>"+data.address + "</b>: " + data.message);
   //para.appendChild(node);
 
-  document.getElementById('chat').appendChild(para);
+  let chat = document.getElementById('chat');
+  chat.appendChild(para);
 
   para.innerHTML = "<b>"+data.nickname + "</b>: " + data.message;
 
-  console.log(data.clientIP);
+  chat.scrollTop = chat.scrollHeight;
+
+  //console.log(data.clientIP);
 }
 
 function sendMsg() {
