@@ -7,7 +7,7 @@ function setup() {
   let canvas = createCanvas(800,800);
   canvas.parent('canvas');
   background(40);
-  socket = io.connect('http://' + serverAddr);
+  socket = io.connect('http://' + serverAddr + ':8080');
   socket.on('mousePos', drawMouseReceived);
   socket.on('newConnection', showNewConnection);
   socket.on('chatMessage', showMsg);
@@ -37,14 +37,14 @@ function mouseDragged() {
 
   noStroke();
   fill(0,0,255);
-  ellipse(data.x, data.y, 16, 16);
+  ellipse(data.x, data.y, 4, 4);
   socket.emit('mousePos', data);
 }
 
 function drawMouseReceived(data) {
   noStroke();
   fill(255,0,0);
-  ellipse(data.x, data.y, 1, 1);
+  ellipse(data.x, data.y, 4, 4);
 }
 
 function draw() {
